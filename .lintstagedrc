@@ -1,0 +1,5 @@
+{
+  "*.{js,jsx,ts,tsx,cjs,mjs}": ["eslint", "eslint --fix"],
+  "**/*.ts?(x)": ["tsc-files --noEmit"],
+  "*.{json,yaml}": ["prettier --check"]
+}
