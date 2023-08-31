@@ -13,7 +13,8 @@
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
     "prepare": "husky install",
-    "commit": "cz"
+    "commit": "cz",
+    "stripe:listen": "stripe listen --forward-to=localhost:3000/api/webhooks --project-name=saas-starter"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
