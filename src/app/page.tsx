@@ -7,6 +7,7 @@ import useSWR from "swr"
 
 import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { SectionContainer } from "@/components/ui/section-container"
 
 export default function IndexPage() {
   const product = useProduct((s) => s.product)
@@ -30,7 +31,7 @@ export default function IndexPage() {
   }, [data])
 
   return (
-    <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
+    <SectionContainer>
       <div className="flex max-w-[980px] flex-col items-start gap-2">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           Beautifully designed components <br className="hidden sm:inline" />
@@ -44,6 +45,6 @@ export default function IndexPage() {
       {isLoading && <h2>Loading</h2>}
       {error && <h2>Error</h2>}
       {product && <h1>{product.title}</h1>}
-    </section>
+    </SectionContainer>
   )
 }
