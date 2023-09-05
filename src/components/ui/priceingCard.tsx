@@ -16,10 +16,11 @@ interface PriceingCardProps {
   title: string
   description: string
   price: string
-  children: React.ReactNode
+  children?: React.ReactNode
   buttonText?: string
   varient?: "default" | "recommended"
   className?: string
+  onClick: () => void
 }
 
 function PriceingCard(props: PriceingCardProps) {
@@ -31,12 +32,13 @@ function PriceingCard(props: PriceingCardProps) {
     buttonText,
     varient,
     className,
+    onClick,
   } = props
   return (
     <>
       <div className={cn("w-full", className)}>
         <Card>
-          <CardHeader className="flex justify-center items-center">
+          <CardHeader className="flex items-center justify-center">
             {varient === "recommended" && (
               <div className="mt-10 scroll-m-20 pb-2 text-xl  tracking-tight transition-colors first:mt-0">
                 Most popular
@@ -53,6 +55,7 @@ function PriceingCard(props: PriceingCardProps) {
             <Button
               className="w-full"
               variant={varient === "recommended" ? "default" : "outline"}
+              onClick={onClick}
             >
               {buttonText || "Get Started"}
             </Button>
