@@ -108,11 +108,11 @@ function Priceing(props: Props) {
             <Card key={product.id} className="w-full">
               <CardHeader className="flex items-center justify-center">
                 <CardTitle>
-                  <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+                  <div className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
                     {product.name}
-                  </h2>
+                  </div>
                 </CardTitle>
-                <h2 className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0"></h2>
+                <span className="mt-10 scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0"></span>
                 <CardDescription>
                   <span className="white text-5xl font-extrabold">
                     {priceString}
