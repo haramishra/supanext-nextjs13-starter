@@ -31,10 +31,13 @@ export default async function IndexPage() {
           subscription={subscription}
         />
       ) : (
-        <Billing />
+        <Billing
+          session={session}
+          user={session?.user}
+          products={products}
+          subscription={subscription}
+        />
       )}
-
-      <Billing />
     </SectionContainer>
   )
 }
