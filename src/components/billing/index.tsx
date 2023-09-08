@@ -34,7 +34,7 @@ function Billing({ subscription, session, user, products }: BillingProps) {
   const currentPlan = subscription?.prices
   return (
     <>
-      <Card className=" p-6">
+      <Card>
         <CardHeader>
           <CardTitle>Subscription plan</CardTitle>
           <CardDescription>
