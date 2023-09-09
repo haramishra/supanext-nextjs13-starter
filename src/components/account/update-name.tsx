@@ -35,20 +35,32 @@ const FormSchema = z.object({
     .max(64, { message: "Name must not be more than 64 characters." }),
 })
 
-export function UpdateName() {
+interface UpdateNameProps {
+  updateName: (newName: string) => Promise<void>
+  fullName: string | null | undefined
+  loading: boolean
+}
+export function UpdateName(props: UpdateNameProps) {
+  const { updateName, fullName, loading } = props
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      username: fullName || "",
+    },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      toast({
+        title: "Success!",
+        description: "Name updated",
+      })
+      await updateName(data.username)
+    } catch (error) {
+      console.log(error)
+    } finally {
+    }
   }
 
   return (
@@ -81,7 +93,9 @@ export function UpdateName() {
             />
           </CardContent>
           <CardFooter className="justify-end">
-            <Button type="submit">Update name</Button>
+            <Button type="submit">
+              {loading ? "Loading..." : "Update name"}
+            </Button>
           </CardFooter>
         </Card>
       </form>
