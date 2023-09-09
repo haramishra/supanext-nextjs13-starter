@@ -15,3 +15,5 @@ export const SectionContainer = React.forwardRef<
     {...props}
   />
 ))
+
+SectionContainer.displayName = "SectionContainer"
