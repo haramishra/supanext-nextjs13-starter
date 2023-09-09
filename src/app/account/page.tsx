@@ -1,19 +1,13 @@
-import { GetServerSideProps } from "next"
-
 import { SectionContainer } from "@/components/ui/section-container"
 import AccountForm from "@/components/account"
 import Billing from "@/components/billing"
 
-import {
-  getActiveProductsWithPrices,
-  getSession,
-  getSubscription,
-} from "../supabase-server"
+import { getSession, getSubscription, getUserDetails } from "../supabase-server"
 
 export default async function Account() {
-  const [session, products, subscription] = await Promise.all([
+  const [session, userDetails, subscription] = await Promise.all([
     getSession(),
-    getActiveProductsWithPrices(),
+    getUserDetails(),
     getSubscription(),
   ])
   return (
@@ -21,13 +15,13 @@ export default async function Account() {
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         ACCOUNT
       </h1>
-      <Billing
+      <Billing session={session} subscription={subscription} />
+      <AccountForm
         session={session}
         user={session?.user}
-        products={products}
+        userDetails={userDetails}
         subscription={subscription}
       />
-      <AccountForm />
     </SectionContainer>
   )
 }
