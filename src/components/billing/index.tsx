@@ -1,5 +1,6 @@
 import { Session, User } from "@supabase/supabase-js"
 
+import { Price, Product, Subscription } from "@/types/tables_db"
 import { Database } from "@/types/types_db"
 
 import {
@@ -11,9 +12,6 @@ import {
 } from "../ui/card"
 import ManageSubscriptionButton from "./manage-button"
 
-type Subscription = Database["public"]["Tables"]["subscriptions"]["Row"]
-type Product = Database["public"]["Tables"]["products"]["Row"]
-type Price = Database["public"]["Tables"]["prices"]["Row"]
 interface ProductWithPrices extends Product {
   prices: Price[]
 }
@@ -25,8 +23,8 @@ interface SubscriptionWithProduct extends Subscription {
 }
 interface BillingProps {
   session: Session | null
-  user: User | null | undefined
-  products: ProductWithPrices[]
+  user?: User | null | undefined
+  products?: ProductWithPrices[]
   subscription: SubscriptionWithProduct | null
 }
 
