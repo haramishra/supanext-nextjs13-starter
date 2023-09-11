@@ -26,6 +26,24 @@ npx create-next-app -e https://github.com/haramishra/supanext-nextjs13-starter
 📄 License
 🚫 No server actions
 
+## Local setup
+
+#### Step 1: Clone the starter
+```bash
+npx create-next-app -e https://github.com/haramishra/supanext-nextjs13-starter
+```
+#### Step 2: Prepare husky
+```bash
+npm run prepare
+```
+#### Step 3: Run in Dev mode
+```bash
+npm run dev
+```
+#### Step 4: Commit your changes with Commitizen
+```bash
+npm run commit
+```
 ## Setting Up Supabase for Your Project
 
 Supabase is a powerful tool for creating and managing databases and authentication for your web applications. In this guide, we'll walk you through the steps to set up Supabase for your project. Follow these clear and educational steps to get started:
@@ -236,7 +254,7 @@ To verify you are running in production mode, test checking out with the [Stripe
 This template mirrors completed Stripe transactions to the Supabase database. This means that if the Supabase database is unavailable, the Stripe transaction will still succeed, but the Supabase database will not be updated, and the application will pass an error code back to Stripe. [By default](https://stripe.com/docs/webhooks/best-practices), Stripe will retry sending its response to the webhook for up to three days, or until the database update succeeds. This means that the Stripe transaction will eventually be reflected in the Supabase database as long as the database comes back online within three days. You may want to implement a process to automatically reconcile the Supabase database with Stripe in case of a prolonged outage.
 
 
-##credits
+##Credits
 [nextjs-subscription-payments](https://github.com/vercel/nextjs-subscription-payments)
 [next-template](https://github.com/shadcn-ui/next-template)
 [nextcn-saas-boilerplate](https://github.com/haramishra/nextcn-saas-boilerplate)
