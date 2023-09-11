@@ -1,31 +1,16 @@
 "use client"
 
 import { useState } from "react"
+import { useAuthStore } from "@/store/auth-store"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
-import { Session, User } from "@supabase/supabase-js"
-
-import { Price, Product, Subscription, userDetails } from "@/types/tables_db"
 
 import { toast } from "../ui/use-toast"
 import { UpdateEmail } from "./update-email"
 import { UpdateName } from "./update-name"
 
-interface PriceWithProduct extends Price {
-  products: Product | null
-}
-interface SubscriptionWithProduct extends Subscription {
-  prices: PriceWithProduct | null
-}
+function AccountForm() {
+  const { session, userDetails } = useAuthStore()
 
-interface AccountFormProps {
-  session: Session | null
-  user: User | null | undefined
-  subscription: SubscriptionWithProduct | null
-  userDetails: userDetails | null
-}
-
-function AccountForm(props: AccountFormProps) {
-  const { session, user, userDetails } = props
   const [nameLoading, setNameLoading] = useState(false)
   const supabase = createClientComponentClient()
   const updateName = async (newName: string) => {
