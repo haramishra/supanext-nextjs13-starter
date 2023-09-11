@@ -9,10 +9,13 @@
 npx create-next-app -e https://github.com/haramishra/supanext-nextjs13-starter
 ```
 
+> **Warning**
+> This repo is a work in progress.
+
 ##✨ Features
 📦 Next.js 13 App Directory
 🎨 Radix UI Primitives
-💳 Stripe Integration
+💳 Stripe Integration(latest API)
 🌈 Tailwind CSS
 🚀 Icons from Lucide
 🌒 Dark mode with next-themes
