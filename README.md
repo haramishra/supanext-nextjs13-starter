@@ -12,22 +12,24 @@ npx create-next-app -e https://github.com/haramishra/supanext-nextjs13-starter
 > **Warning**
 > This repo is a work in progress.
 
-##✨ Features
-📦 Next.js 13 App Directory
-🎨 Radix UI Primitives
-💳 Stripe Integration(latest API)
-🌈 Tailwind CSS
-🚀 Icons from Lucide
-🌒 Dark mode with next-themes
-📏 Tailwind CSS class sorting, merging, and linting.
-🕵️‍♂️ End-to-end testing with Playwright
-🧪 Testing with Vite
-🛠️ Pre-commit triggers with lint-staged and Husky
-🔢 Version automation with Commitizen and Commitlint
-🔄 Caching with SWR
-🧩 State management with Zustand
-📄 License
-🚫 No server actions
+
+## ✨ Features
+
+* 📦 Next.js 13 App Directory
+* 🎨 Radix UI Primitives
+* 💳 Stripe Integration(latest API)
+* 🌈 Tailwind CSS
+* 🚀 Icons from Lucide
+* 🌒 Dark mode with next-themes
+* 📏 Tailwind CSS class sorting, merging, and linting.
+* 🕵️‍♂️ End-to-end testing with Playwright
+* 🧪 Testing with Vite
+* 🛠️ Pre-commit triggers with lint-staged and Husky
+* 🔢 Version automation with Commitizen and Commitlint
+* 🔄 Caching with SWR
+* 🧩 State management with Zustand
+* 📄 License
+* 🚫 No server actions
 
 ## Local setup
 
