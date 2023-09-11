@@ -10,6 +10,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import SupabaseProvider from "./supabase-provider"
+import { getActiveProductsWithPrices, getSubscription } from "./supabase-server"
 
 export const metadata: Metadata = {
   title: {

@@ -1,3 +1,10 @@
+import { useAuthStore, useProductStore } from "@/store/auth-store"
+
+import {
+  AuthStoreInitializer,
+  ProductStoreInitializer,
+} from "@/lib/store-initializer"
+// import useStore from "@/lib/use-store"
 import { SectionContainer } from "@/components/ui/section-container"
 import Billing from "@/components/billing"
 import Priceing from "@/components/priceing"
@@ -14,30 +21,26 @@ export default async function IndexPage() {
     getActiveProductsWithPrices(),
     getSubscription(),
   ])
-  console.log(subscription)
+  useAuthStore.setState({ session: session })
+  useProductStore.setState({
+    products,
+    subscription,
+  })
+
   return (
     <SectionContainer>
+      <AuthStoreInitializer session={session} />
+      <ProductStoreInitializer
+        products={products}
+        subscription={subscription}
+      />
       <div className="flex max-w-[980px] flex-col items-start gap-2">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           {subscription ? "Billing" : "Priceing"}
         </h1>
       </div>
 
-      {!subscription ? (
-        <Priceing
-          session={session}
-          user={session?.user}
-          products={products}
-          subscription={subscription}
-        />
-      ) : (
-        <Billing
-          session={session}
-          user={session?.user}
-          products={products}
-          subscription={subscription}
-        />
-      )}
+      {!subscription ? <Priceing /> : <Billing />}
     </SectionContainer>
   )
 }

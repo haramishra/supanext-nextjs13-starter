@@ -2,11 +2,11 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useAuthStore, useProductStore } from "@/store/auth-store"
 import { postData } from "@/utils/helpers"
 import { getStripe } from "@/utils/stripe-client"
-import { Session, User } from "@supabase/supabase-js"
 
-import { Database } from "@/types/types_db"
+import { Price } from "@/types/tables_db"
 
 import { Button } from "../ui/button"
 import {
@@ -17,36 +17,17 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card"
-import PriceingCard from "../ui/priceingCard"
-
-type Subscription = Database["public"]["Tables"]["subscriptions"]["Row"]
-type Product = Database["public"]["Tables"]["products"]["Row"]
-type Price = Database["public"]["Tables"]["prices"]["Row"]
-interface ProductWithPrices extends Product {
-  prices: Price[]
-}
-interface PriceWithProduct extends Price {
-  products: Product | null
-}
-interface SubscriptionWithProduct extends Subscription {
-  prices: PriceWithProduct | null
-}
-
-interface Props {
-  session: Session | null
-  user: User | null | undefined
-  products: ProductWithPrices[]
-  subscription: SubscriptionWithProduct | null
-}
 
 type BillingInterval = "lifetime" | "year" | "month"
 
-function Priceing(props: Props) {
-  const { session, user, products, subscription } = props
+function Priceing() {
+  const { session } = useAuthStore()
+  const { products, subscription } = useProductStore()
+  const user = session?.user
 
   const intervals = Array.from(
     new Set(
-      products.flatMap((product) =>
+      products?.flatMap((product) =>
         product?.prices?.map((price) => price?.interval)
       )
     )
@@ -81,7 +62,7 @@ function Priceing(props: Props) {
     }
   }
 
-  if (!products.length) {
+  if (!products?.length) {
     return (
       <>
         <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
@@ -94,7 +75,7 @@ function Priceing(props: Props) {
   return (
     <>
       <div className={"flex w-full gap-10"}>
-        {products.map((product, index) => {
+        {products?.map((product, index) => {
           const price = product?.prices?.find(
             (price) => price.interval === billingInterval
           )
