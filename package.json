@@ -1,7 +1,14 @@
 {
-  "name": "next-template",
+  "name": "supanext-next-13-starter",
+  "description": "A cutting-edge starter template for rapidly developing SAAS applications with Next.js and Supabase. Jumpstart your project with the latest tools and APIs for a seamless development experience.",
   "version": "0.0.2",
-  "private": true,
+  "author": "haramishra",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haramishra/supanext-nextjs13-starter"
+  },
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -72,5 +79,12 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "keywords": [
+    "nextjs",
+    "supabase",
+    "starter",
+    "boilerplate",
+    "template"
+  ]
 }
