@@ -1,39 +1,27 @@
 import { useAuthStore, useProductStore } from "@/store/auth-store"
 
-import {
-  AuthStoreInitializer,
-  ProductStoreInitializer,
-} from "@/lib/store-initializer"
+import { ProductStoreInitializer } from "@/lib/store-initializer"
 // import useStore from "@/lib/use-store"
 import { SectionContainer } from "@/components/ui/section-container"
 import Billing from "@/components/billing"
 import Priceing from "@/components/priceing"
 
-import {
-  getActiveProductsWithPrices,
-  getSession,
-  getSubscription,
-} from "./supabase-server"
+import { getActiveProductsWithPrices } from "./supabase-server"
 
 export default async function IndexPage() {
-  const [session, products, subscription] = await Promise.all([
-    getSession(),
-    getActiveProductsWithPrices(),
-    getSubscription(),
-  ])
-  useAuthStore.setState({ session: session })
+  const subscription = useAuthStore.getState().subscription
+
+  console.log(useAuthStore.getState())
+
+  const products = await getActiveProductsWithPrices()
+
   useProductStore.setState({
     products,
-    subscription,
   })
 
   return (
     <SectionContainer>
-      <AuthStoreInitializer session={session} />
-      <ProductStoreInitializer
-        products={products}
-        subscription={subscription}
-      />
+      <ProductStoreInitializer products={products} />
       <div className="flex max-w-[980px] flex-col items-start gap-2">
         <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
           {subscription ? "Billing" : "Priceing"}
