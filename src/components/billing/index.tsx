@@ -29,8 +29,12 @@ function Billing() {
         <CardFooter className="justify-between">
           <ManageSubscriptionButton session={session} />
           <div>
-            Your plan will renew on{" "}
-            {new Date(subscription?.current_period_end || "").toDateString()}
+            {subscription?.cancel_at
+              ? "Your plan will be canceled on "
+              : "Your plan renews on "}
+            {subscription?.current_period_end &&
+              new Date(subscription?.current_period_end).toDateString()}
+            .
           </div>
         </CardFooter>
       </Card>
