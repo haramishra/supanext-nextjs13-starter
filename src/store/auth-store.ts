@@ -1,7 +1,6 @@
 import { Session } from "@supabase/supabase-js"
 import { create } from "zustand"
-
-// import { createJSONStorage, persist } from "zustand/middleware"
+import { createJSONStorage, persist } from "zustand/middleware"
 
 import { Price, Product, Subscription, UserDetails } from "@/types/tables_db"
 
@@ -18,19 +17,33 @@ interface SubscriptionWithProduct extends Subscription {
 export interface AuthStore {
   session: Session | null
   userDetails?: UserDetails | null
-  subscription: SubscriptionWithProduct | null
 }
 
 export interface ProductStore {
   products?: ProductWithPrices[] | null
+  subscription: SubscriptionWithProduct | null
 }
 
-export const useAuthStore = create<AuthStore>()((set, get) => ({
-  session: null,
-  userDetails: null,
-  subscription: null,
-}))
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    (set, get) => ({
+      session: null,
+      userDetails: null,
+    }),
+    {
+      name: "authStore", // name of the item in the storage (must be unique)
+    }
+  )
+)
 
-export const useProductStore = create<ProductStore>()((set, get) => ({
-  products: null,
-}))
+export const useProductStore = create<ProductStore>()(
+  persist(
+    (set, get) => ({
+      products: null,
+      subscription: null,
+    }),
+    {
+      name: "productStore", // name of the item in the storage (must be unique)
+    }
+  )
+)

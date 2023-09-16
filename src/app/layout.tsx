@@ -1,10 +1,8 @@
 import "@/styles/globals.css"
 import { Metadata } from "next"
-import { useAuthStore } from "@/store/auth-store"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
-import { AuthStoreInitializer } from "@/lib/store-initializer"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/site-header"
@@ -12,7 +10,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import SupabaseProvider from "./supabase-provider"
-import { getSession, getSubscription, getUserDetails } from "./supabase-server"
+import { getActiveProductsWithPrices, getSubscription } from "./supabase-server"
 
 export const metadata: Metadata = {
   title: {
@@ -37,20 +35,7 @@ interface RootLayoutProps {
 
 export const dynamic = "force-dynamic"
 
-export default async function RootLayout({ children }: RootLayoutProps) {
-  //fetches auth details and sets a global store
-  const [session, userDetails, subscription] = await Promise.all([
-    getSession(),
-    getUserDetails(),
-    getSubscription(),
-  ])
-
-  useAuthStore.setState({
-    session,
-    userDetails,
-    subscription,
-  })
-
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
@@ -65,11 +50,6 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
               <div className="relative flex min-h-screen flex-col">
                 <SiteHeader />
-                <AuthStoreInitializer
-                  subscription={subscription}
-                  session={session}
-                  userDetails={userDetails}
-                />
                 <div className="flex-1">{children}</div>
                 <Toaster />
               </div>

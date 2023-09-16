@@ -1,4 +1,8 @@
-import { useAuthStore } from "@/store/auth-store"
+import { useAuthStore, useProductStore } from "@/store/auth-store"
+import { Session, User } from "@supabase/supabase-js"
+
+import { Price, Product, Subscription } from "@/types/tables_db"
+import { Database } from "@/types/types_db"
 
 import {
   Card,
@@ -10,8 +14,9 @@ import {
 import ManageSubscriptionButton from "./manage-button"
 
 function Billing() {
-  const { session, subscription } = useAuthStore.getState()
-  console.log(subscription)
+  const { session } = useAuthStore.getState()
+  const { subscription } = useProductStore.getState()
+
   const currentPlan = subscription?.prices
   return (
     <>

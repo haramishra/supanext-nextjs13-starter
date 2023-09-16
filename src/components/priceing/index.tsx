@@ -21,8 +21,8 @@ import {
 type BillingInterval = "lifetime" | "year" | "month"
 
 function Priceing() {
-  const { session, subscription } = useAuthStore()
-  const { products } = useProductStore()
+  const { session } = useAuthStore()
+  const { products, subscription } = useProductStore()
   const user = session?.user
 
   const intervals = Array.from(

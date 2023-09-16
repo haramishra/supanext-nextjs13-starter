@@ -8,24 +8,23 @@ import {
   useProductStore,
 } from "@/store/auth-store"
 
-export function AuthStoreInitializer({
-  session,
-  userDetails,
-  subscription,
-}: AuthStore) {
+export function AuthStoreInitializer({ session, userDetails }: AuthStore) {
   const init = useRef(false)
   if (!init.current) {
-    useAuthStore.setState({ session, userDetails, subscription })
+    useAuthStore.setState({ session, userDetails })
     init.current = true
   }
 
   return null
 }
 
-export function ProductStoreInitializer({ products }: ProductStore) {
+export function ProductStoreInitializer({
+  products,
+  subscription,
+}: ProductStore) {
   const init = useRef(false)
   if (!init.current) {
-    useProductStore.setState({ products })
+    useProductStore.setState({ products, subscription })
     init.current = true
   }
 
