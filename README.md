@@ -259,10 +259,10 @@ To verify you are running in production mode, test checking out with the [Stripe
 This template mirrors completed Stripe transactions to the Supabase database. This means that if the Supabase database is unavailable, the Stripe transaction will still succeed, but the Supabase database will not be updated, and the application will pass an error code back to Stripe. [By default](https://stripe.com/docs/webhooks/best-practices), Stripe will retry sending its response to the webhook for up to three days, or until the database update succeeds. This means that the Stripe transaction will eventually be reflected in the Supabase database as long as the database comes back online within three days. You may want to implement a process to automatically reconcile the Supabase database with Stripe in case of a prolonged outage.
 
 
-## Credits
-* [nextjs-subscription-payments](https://github.com/vercel/nextjs-subscription-payments)
-* [next-template](https://github.com/shadcn-ui/next-template)
-* [nextcn-saas-boilerplate](https://github.com/haramishra/nextcn-saas-boilerplate)
+##Credits
+[nextjs-subscription-payments](https://github.com/vercel/nextjs-subscription-payments)
+[next-template](https://github.com/shadcn-ui/next-template)
+[nextcn-saas-boilerplate](https://github.com/haramishra/nextcn-saas-boilerplate)
 
 ## License
 
