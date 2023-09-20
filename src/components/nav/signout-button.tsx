@@ -10,7 +10,7 @@ export default function SignOutButton() {
   const router = useRouter()
   const { supabase } = useSupabase()
   return (
-    <form action="/auth/sigh-out" method="post">
+    <form action="/auth/sign-out" method="post">
       <Button variant={"ghost"}>Sign out</Button>
     </form>
   )
